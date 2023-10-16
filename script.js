@@ -170,9 +170,14 @@ clearAllButton.addEventListener('click', clearAllTasks);
     }
 
     // Function to render search results
-    function renderSearchResults(query) {
+     function renderSearchResults(query) {
         const searchResults = document.getElementById('searchResults');
-        searchResults.innerHTML = '';
+        searchResults.innerHTML = ''; 
+    
+        if (query.trim() === '') {
+            
+            return;
+        }
     
         const matchingTasks = searchTasks(query);
     
@@ -183,11 +188,10 @@ clearAllButton.addEventListener('click', clearAllTasks);
                 const li = document.createElement('li');
                 li.className = 'list-group-item';
     
-                
                 if (task.done) {
-                    li.classList.add('text-success'); 
+                    li.classList.add('text-success');
                 } else {
-                    li.classList.add('text-danger'); 
+                    li.classList.add('text-danger');
                 }
     
                 li.textContent = task.text;
@@ -195,13 +199,12 @@ clearAllButton.addEventListener('click', clearAllTasks);
             });
         }
     }
-
-   
+    
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', function () {
         const query = searchInput.value.trim();
         renderSearchResults(query);
-    });
+    })
   
     renderTasks();
 });
